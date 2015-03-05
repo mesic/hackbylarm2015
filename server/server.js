@@ -54,11 +54,24 @@ var twitterClient = new Twitter({
   access_token_secret: TWITTER_ACCESS_SECRET,
 });
 // TWITTER SETUP
+twitterClient.get('search/tweets.json', {q: 'https://soundcloud.com/kygo/firestone-ft-conrad', since:'2015-03-01', count: 100}, function(error, tweets, response){
+  console.log(tweets.statuses.length); 
+});
+
+var request = require('request');
+request('http://urls.api.twitter.com/1/urls/count.json?url=https://soundcloud.com/kygo/firestone-ft-conrad', function(error, response, body){
+	console.log(body);
+});
 
 // SOUNDCLOUD SETUP
 var request = require('request');
 request('https://api.soundcloud.com/tracks?client_id='+credentials.soundcloud.clientID, function(error, response, body){
-	
+});
+
+// FACEBOOK SETUP
+var request = require('request');
+request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20share_count,%20comment_count%20FROM%20link_stat%20WHERE%20url%20=%20%22https://soundcloud.com/kygo/firestone-ft-conrad%22', function(error, response, body){
+	console.log(body);
 });
 
 var apiRouter = express.Router();
@@ -68,6 +81,7 @@ apiRouter.get('/', function(req, res){
 
 app.use('/api', apiRouter);
 
+app.use(express.static(__dirname + '/../client/build'));
 var port = 8080;
 
 app.listen(port);
