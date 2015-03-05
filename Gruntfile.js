@@ -19,10 +19,10 @@ module.exports = function(grunt){
 
     vendor_files: {
       js: [
-        'vendor/angular/angular.js',
-        'vendor/angular-route/angular-route.js',
-        'vendor/foundation/js/foundation.js',
-        'vendor/jquery/dist/jquery.js'
+        'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
+        'bower_components/foundation/js/foundation.js',
+        'bower_components/jquery/dist/jquery.js'
       ]
     }
   };
