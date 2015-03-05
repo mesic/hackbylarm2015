@@ -1,0 +1,8 @@
+// Import custom overrides for foundation
+@import "assets/scss/settings";
+
+// Import foundation
+@import "../../vendor/foundation/scss/foundation";
+
+// Import custom scss code
+@import "assets/scss/custom";
