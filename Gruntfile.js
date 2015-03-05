@@ -21,7 +21,8 @@ module.exports = function(grunt){
       js: [
         'bower_components/angular/angular.js',
         'bower_components/angular-route/angular-route.js',
-        'bower_components/foundation/js/foundation.js',
+        'bower_components/angular-resource/angular-resource.js',
+        'bower_components/bootstrap-sass/assets/javascript/bootstrap.js',
         'bower_components/jquery/dist/jquery.js'
       ]
     }
@@ -44,6 +45,7 @@ module.exports = function(grunt){
             bundle: [
               '<%= config.build_dir %>vendor/angular.js',
               '<%= config.build_dir %>vendor/angular-route.js',
+              '<%= config.build_dir %>vendor/angular-resource.js',              
               '<%= config.build_dir %>vendor/jquery.js',
               '<%= config.build_dir %>vendor/foundation.js',
               '<%= config.build_dir %>app.js',
