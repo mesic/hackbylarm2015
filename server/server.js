@@ -82,6 +82,7 @@ apiRouter.get('/', function(req, res){
 app.use('/api', apiRouter);
 
 app.use(express.static(__dirname + '/../client/build'));
+
 var port = 8080;
 
 app.listen(port);
