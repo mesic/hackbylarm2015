@@ -13,7 +13,7 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res){
-    res.send('This is the api root');
+    res.send('Thisal asdmir oot');
   });
 
 router.route('/users')
