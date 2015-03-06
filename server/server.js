@@ -313,7 +313,7 @@ apiRouter.get('/youtube/fanbase', function(req, res){
 			numberSubs = object.items[0].statistics.subscriberCount;
 			var jsonVal = {
 			    total: numberSubs,
-			    sinceYesterday : 10				
+			    sinceYesterday : "+10"				
 			};
 			res.json(jsonVal);
 		}else{

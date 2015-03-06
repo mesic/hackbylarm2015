@@ -2,23 +2,23 @@
     {
       "facebook": {
         "total": 899,
-        "sinceYesterday" : 21
+        "sinceYesterday" : "+21"
       },
       "twitter": {
         "total": 456,
-        "sinceYesterday" : 4
+        "sinceYesterday" : "-4"
       },
       "instagram": {
         "total": 378,
-        "sinceYesterday" : 16
+        "sinceYesterday" : "+16"
       },
       "spotify": {
         "total": 780,
-        "sinceYesterday" : 25
+        "sinceYesterday" : "+25"
       }, 
       "soundcloud": {
         "total": 1781,
-        "sinceYesterday" : 93
+        "sinceYesterday" : "+93"
       }
     }                 
 ]

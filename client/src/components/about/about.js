@@ -15,7 +15,6 @@ angular.module('mmApp.about', [])
 	aboutService.loadFanbase().query(function (data) {
 		$scope.fanbaseData = data;
 		updateFanbase(data[0]);
-
 		
     });
 
