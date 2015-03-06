@@ -44,8 +44,8 @@ angular.module('mmApp.home', [])
   		$scope.tracks = "";	 					
 		UserService.youtubeTracks().query({'username': $scope.youtubeUsername}, function (data) {
 			$scope.tracks = data;
-			$scope.source = 'Youtube';
-			$scope.showTrack($scope.tracks[0]);			
+			$scope.source = 'Youtube';	
+			$scope.showTrack($scope.tracks[0]);	
 		}).$promise.then(
 			function(data){
 				$scope.loaded = false;					
@@ -76,7 +76,7 @@ angular.module('mmApp.home', [])
  		$scope.tracks = "";			 		
  		UserService.soundcloudTracks().query({'username': $scope.soundcloudUsername}, function (data) {
     		$scope.tracks = data;
-    		$scope.source = 'SoundCloud';	
+    		$scope.source = 'SoundCloud';
     		$scope.showTrack($scope.tracks[0]);	
 		}).$promise.then(
 			function(data){
@@ -108,6 +108,10 @@ angular.module('mmApp.home', [])
  		}
  	} 	
  	
+ 	$scope.updateChart = function() {
+ 		chartInit($scope.currentTrack);
+ 	}
+
 	function getDatesForChart(numberOfDays){
 
 		var dateArray = [];
