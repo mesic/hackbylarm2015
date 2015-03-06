@@ -62,7 +62,8 @@ apiRouter.get('/spotify/tracks', function(req, res){
 				id: trackId,
 				shareLink: 'https://open.spotify.com/track/' + trackId,
 				title: spotifyTracks.tracks[i].name,
-				type: 'spotify'
+				type: 'spotify',
+				image: spotifyTracks.tracks[i].album.images ? spotifyTracks.tracks[i].album.images[0].url : false
 			});			
 		}
 		res.json(ret);
@@ -115,7 +116,8 @@ apiRouter.get('/soundcloud/tracks', function(req, res){
 						id: soundcloudTracks[i].id,
 						shareLink: soundcloudTracks[i].permalink_url,
 						title: soundcloudTracks[i].title,
-						type: 'soundcloud'
+						type: 'soundcloud',
+						image: soundcloudTracks[i].artwork_url ? soundcloudTracks[i].artwork_url : false
 					});			
 				}
 				res.json(ret);
@@ -186,7 +188,8 @@ apiRouter.get('/youtube/tracks', function(req, res){
 							id: object1.items[i].contentDetails.videoId,
 							shareLink: 'https://www.youtube.com/watch?v=' + object1.items[i].contentDetails.videoId,
 							title: object1.items[i].snippet.title,
-							type: 'youtube'
+							type: 'youtube',
+							image: object1.items[i].snippet.thumbnails.default.url
 						});
 					}
 					res.json(ret);

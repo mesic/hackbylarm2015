@@ -1,38 +1,28 @@
 [
     {
-      "twitter": {
-        "total": 123,
-        "sinceYesterday" : 10
-      }
-    }, 
-    {
-      "spotify": {
-        "total": 123,
-        "sinceYesterday" : 10
-      }
-    }, 
-    {
-      "youtube": {
-        "total": 123,
-        "sinceYesterday" : 10
-      }
-    }, 
-    {
       "facebook": {
-        "total": 123,
-        "sinceYesterday" : 10
-      }
-    }, 
-    {
+        "total": 456,
+        "sinceYesterday" : 20
+      },
+      "twitter": {
+        "total": 456,
+        "sinceYesterday" : 20
+      },
       "instagram": {
-        "total": 123,
-        "sinceYesterday" : 10
-      }
-    },
-    {
+        "total": 456,
+        "sinceYesterday" : 20
+      },
+      "spotify": {
+        "total": 456,
+        "sinceYesterday" : 20
+      }, 
       "soundcloud": {
-        "total": 123,
-        "sinceYesterday" : 10
+        "total": 456,
+        "sinceYesterday" : 20
+      },
+      "youtube": {
+        "total": 456,
+        "sinceYesterday" : 20
       }
     }                 
 ]
