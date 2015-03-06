@@ -37,7 +37,7 @@ module.exports = function(grunt){
     clean: ['<%= config.build_dir %>'],
 
     htmlbuild:{
-      dev: {
+      dev: {  
         src: 'client/src/index.html',
         dest: 'client/build/',
         options: {
@@ -50,12 +50,14 @@ module.exports = function(grunt){
               '<%= config.build_dir %>vendor/jquery.js',
               '<%= config.build_dir %>vendor/Chart.js',
               '<%= config.build_dir %>app.js',
+              '<%= config.build_dir %>assets/*.png',
               'client/build/components/**/*.js'
             ]
           },
           styles: {
             bundle: [
-              'client/build/mm-boilerplate.css'
+              'client/build/mm-boilerplate.css',
+              'client/src/components/home/custom.css'
             ]
           }
         }
@@ -114,15 +116,15 @@ module.exports = function(grunt){
 
     watch: {
       scss: {
-        files: '<%= config.client_dir %>**/*.scss',
-        tasks: ['sass:dev'],
+        files: '<%= config.client_dir %>src/**/*.scss',
+        tasks: ['build'],
         options: {
           livereload: true
         }
       },
       js: {
-        files: '<%= config.client_dir %>**/*.js',
-        tasks: ['copy:app_js'],
+        files: '<%= config.client_dir %>src/**/*.js',
+        tasks: ['build'],
         options: {
           options: {
             livereload: true
@@ -130,8 +132,8 @@ module.exports = function(grunt){
         }
       },
       html: {
-        files: '<%= config.client_dir %>**/*.html',
-        tasks: ['copy:html'],
+        files: '<%= config.client_dir %>src/**/*.html',
+        tasks: ['build'],
         options: {
           livereload: true
         }
