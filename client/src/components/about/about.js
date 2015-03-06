@@ -8,7 +8,7 @@ angular.module('mmApp.about', [])
 
 	if(angular.isUndefined($scope.youtubeUsername))
 		$scope.youtubeUsername = "kanyewestvevo"
-		
+	var d = "asd";
 	$scope.youtubeFanbase = function(){
 		aboutService.youtubeFanbase().get({'username': $scope.youtubeUsername}, function (data) {	
 			$scope.youtubeFansebase = data;
