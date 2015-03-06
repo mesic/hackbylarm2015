@@ -4,12 +4,29 @@ angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
-  	
-	UserService.youtubeTracks().query(function (data) {
-		$scope.tracks = data;
-		chartInit(data);
 
-	});
+    //Load all YouTube tracks (default)
+ 	$scope.loadYoutubeTracks = function(){
+		UserService.youtubeTracks().query(function (data) {
+			$scope.tracks = data;
+		});
+	}
+
+    //Load all Spotify tracks
+ 	$scope.loadSpotifyTracks = function(){
+ 		UserService.spotifyTracks().query(function (data) {
+    		$scope.tracks = data;
+    	});
+ 	}
+
+    //Load all SoundCloud tracks
+ 	$scope.loadSoundcloudTracks = function(){
+ 		UserService.soundcloudTracks().query(function (data) {
+    		$scope.tracks = data;
+			chartInit(data);
+    	});
+ 	} 	
+
 
 
 	var timeFrame = [7,14,30,90];    

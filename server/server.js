@@ -43,7 +43,9 @@ request('http://urls.api.twitter.com/1/urls/count.json?url=https://soundcloud.co
 var apiRouter = express.Router();
 
 apiRouter.get('/spotify/tracks', function(req, res){
-	var spotifyUsername = req.param('username');
+	//var spotifyUsername = req.param('username');
+	var spotifyUsername = "4gzpq5DPGxSnKTe4SA8HAU"; //Coldplay
+
 	request('http://ws.spotify.com/search/1/track.json?q=artist:' + spotifyUsername, function(error, response, body){
 		var spotifyTracks = JSON.parse(body);
 		var ret = [];
@@ -70,7 +72,8 @@ apiRouter.get('/spotify/tracks', function(req, res){
 })
 
 apiRouter.get('/soundcloud/tracks', function(req, res){
-	var soundcloudUsername = req.param('username');
+	//var soundcloudUsername = req.param('username');
+	var soundcloudUsername = "coldplayofficial";
 	request('https://api.soundcloud.com/resolve.json?url=http://soundcloud.com/' + soundcloudUsername + '&client_id='+SOUNDCLOUD_CLIENT_ID, function(error, response, body){
 		var object = JSON.parse(body);
 		if (object.id) {
@@ -103,7 +106,9 @@ apiRouter.get('/soundcloud/tracks', function(req, res){
 })
 
 apiRouter.get('/youtube/tracks', function(req, res){
-	var youtubeUsername = req.param('username');
+	//var youtubeUsername = req.param('username');
+	var youtubeUsername = "ColdplayVEVO";
+
 	var ytParams = { 
 		key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
 	    maxResults: 50,
