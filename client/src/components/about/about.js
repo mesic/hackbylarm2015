@@ -11,7 +11,7 @@ angular.module('mmApp.about', [])
 		
 	$scope.youtubeFanbase = function(){
 		aboutService.youtubeFanbase().get({'username': $scope.youtubeUsername}, function (data) {	
-			$scope.fanbaseData = data;
+			$scope.youtubeFansebase = data;
 		});		
 	}
 
