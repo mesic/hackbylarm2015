@@ -45,13 +45,32 @@ td:hover, td:active {
   cursor: pointer;
 }
 
-table {
-  margin-bottom: 0px !important;
-}
-
 .floatright {
   float: right;
+ } 
+
+.fanbase {
+  display: inline-block;
+  list-style: none;
 }
-.floatleft {
-  float: left;
+
+.some-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 90px;
+}
+
+.fanbase-stats {
+  border-radius: 10px;
+  border: 1px solid #222;
+  padding: 8px;
+  text-align: center;
+}
+
+.no-list {
+  border-radius: 10px;
+  border: 1px solid #222;
+  padding: 8px;
+  list-style: none;
+  text-align: center;
 }
