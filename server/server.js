@@ -123,7 +123,7 @@ apiRouter.get('/soundcloud/tracks', function(req, res){
 						shareLink: soundcloudTracks[i].permalink_url,
 						title: soundcloudTracks[i].title,
 						type: 'soundcloud',
-						image: soundcloudTracks[i].artwork_url ? soundcloudTracks[i].artwork_url : false
+						image: soundcloudTracks[i].artwork_url ? soundcloudTracks[i].artwork_url : false,
 					});			
 				}
 				res.json(ret);
@@ -145,6 +145,7 @@ apiRouter.get('/soundcloud/tracks/:id', function(req, res){
 						shareLink: soundcloudTrack.permalink_url,
 						title: soundcloudTrack.title,
 						type: 'soundcloud',
+						playbackCount: soundcloudTrack.playback_count,
 						shares: {
 							fb: {
 								hours: generateSharesPerHourForLastTwoWeeks(),

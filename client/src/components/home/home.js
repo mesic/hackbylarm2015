@@ -268,6 +268,7 @@ angular.module('mmApp.home', [])
 	    		'<span style="color: #3b5998">Facebook: &#x25cf ' + totalFacebookShares + '</span>' +
 	    		'&nbsp;<span style="color: #00aced">    Twitter: &#x25cf ' + totalTwitterShares + '</span>' +
 	    		'&nbsp;<span style="color: red">    Google blogs: &#x25cf ' + totalGoogleBlogShares + '</span>' +
+	    		(data.type == 'soundcloud' ? '&nbsp;<span style="color: orange">    (Soundcloud plays: &#x25cf ' + data.playbackCount + ')</span>': '') +
 	    	'</div> </br>' + 
 	    	'<canvas id="myChart" width="550" height="400"></canvas>');
 	    
