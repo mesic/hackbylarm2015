@@ -181,13 +181,12 @@ angular.module('mmApp.home', [])
 				break;
 		}
 
-
 	    var chartdata = {
 	        labels: labels,
 	        datasets: [
 	            {
 	                label: "My First dataset",
-	                fillColor: "rgba(59,89,152,0)",
+	                fillColor: "rgba(59,89,152,0.1)",
 	                strokeColor: "rgba(59,89,152,1.0)",
 	                pointColor: "rgba(59,89,152,1.0)",
 	                pointStrokeColor: "#fff",
@@ -197,7 +196,7 @@ angular.module('mmApp.home', [])
 	            },
 	            {
 	                label: "My Second dataset",
-	                fillColor: "rgba(0,172,237,0)",
+	                fillColor: "rgba(0,172,237,0.1)",
 	                strokeColor: "rgba(0,172,237,1.0)",
 	                pointColor: "rgba(0,172,237,1.0)",
 	                pointStrokeColor: "#fff",
