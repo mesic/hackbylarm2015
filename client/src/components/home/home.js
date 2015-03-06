@@ -5,24 +5,17 @@ angular.module('mmApp.home', [])
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
   	
-  	//Load shares on a specific track
- 	UserService.trackShares().query(function (data) {
-    	$scope.trackShares = data;
+	UserService.youtubeTracks().query(function (data) {
+		$scope.tracks = data;
+		chartInit(data);
 
-    	chartInit(data);	
+	});
 
-    });
 
-    //Load all tracks
 
- 	$scope.loadYoutubeTracks = function(){
- 		UserService.youtubeTracks().query(function (data) {
-    		$scope.tracks = data;
-    		chartInit(data);
-    	});
- 	}
 
-    
+
+	var timeFrame = [7,14,30,90];    
 
 
 
@@ -63,7 +56,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(220,220,220,1)",
-	                data: data[0]["facebook"]
+	                data: []//data[0]["facebook"]
 	            },
 	            {
 	                label: "My Second dataset",
@@ -73,7 +66,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(151,187,205,1)",
-	                data: data[0]["twitter"]
+	                data: []//data[0]["twitter"]
 	            }
 	        ]
 	    };
