@@ -1,0 +1,38 @@
+[
+    {
+      "twitter": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    }, 
+    {
+      "spotify": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    }, 
+    {
+      "youtube": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    }, 
+    {
+      "facebook": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    }, 
+    {
+      "instagram": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    },
+    {
+      "soundcloud": {
+        "total": 123,
+        "sinceYesterday" : 10
+      }
+    }                 
+]

@@ -252,6 +252,10 @@ apiRouter.get('/tracks/1', function(req, res){
 	res.json(require("../client/mock_data/track_shares.json"));
 })
 
+apiRouter.get('/fanbase', function(req, res){
+	res.json(require("../client/mock_data/fanbase.json"));
+})
+
 app.use('/api', apiRouter);
 
 app.use(express.static(__dirname + '/../client/build'));
