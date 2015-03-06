@@ -107,8 +107,8 @@ angular.module('mmApp.home', [])
 		    case 7:
 		        
 		    	// 7 days, show hours (7*24h = 168h)
-				facebookData = data["shares"]["fb"]["hours"].slice(0,168);
-				twitterData = data["shares"]["twitter"]["hours"].slice(0,168);
+				facebookData = data["shares"]["fb"]["hours"].slice(168, 336);
+				twitterData = data["shares"]["twitter"]["hours"].slice(168, 336);
 
 
 		        break;
@@ -122,8 +122,8 @@ angular.module('mmApp.home', [])
 		    case 30:
 				// 30 days, show days		        
 
-				facebookData = data["shares"]["fb"]["days"].slice(0,30);
-				twitterData = data["shares"]["twitter"]["days"].slice(0,30);
+				facebookData = data["shares"]["fb"]["days"].slice(60, 90);
+				twitterData = data["shares"]["twitter"]["days"].slice(60, 90);
 
 		        break;
 		    case 90:
