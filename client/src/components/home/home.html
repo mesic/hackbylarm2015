@@ -33,7 +33,7 @@
   <h4> Channel: {{ source ? source: 'None'}}</h4>
   <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
 
- <img class="logo" src="src/assets/loader.gif" ng-show="loaded"/>
+ <img class="logo" src="src/assets/loader.gif" ng-show="loaded" width="200px" heigth="200px"/>
 
   <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10" ng-click="showTrack(track)" ng-init="showTrack(tracks[0])">
     <tr><td> {{track.title}}</td></tr>
