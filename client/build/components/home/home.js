@@ -12,13 +12,8 @@ angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
-<<<<<<< HEAD
-  	
-    //Load all tracks
-=======
 
     //Load all YouTube tracks (default)
->>>>>>> 2c230283dfe09030feb617cdcf30ac25776fd665
  	$scope.loadYoutubeTracks = function(){
 		UserService.youtubeTracks().query(function (data) {
 			$scope.tracks = data;
