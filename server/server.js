@@ -259,7 +259,7 @@ apiRouter.get('/twitter/stats', function(req, res){
 			var totalFans = twitterStats["followers_current"];
 			var newFans = twitterStats["followers_yesterday"];
 
-			var ret = {total:totalFans,newFans:totalFans-newFans};
+			var ret = {total:totalFans,sinceYesterday:totalFans-newFans};
 
 			res.json(ret);
 
@@ -304,8 +304,8 @@ apiRouter.get('/youtube/fanbase', function(req, res){
 		if(object.etag && object.items.length > 0){
 			numberSubs = object.items[0].statistics.subscriberCount;
 			var jsonVal = {
-			    "total": numberSubs,
-			    "sinceYesterday" : 10				
+			    total: numberSubs,
+			    sinceYesterday : 10				
 			};
 			res.json(jsonVal);
 		}else{
