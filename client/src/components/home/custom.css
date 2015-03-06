@@ -1,0 +1,28 @@
+.margin {
+  margin: 20px 0 0 20px;
+}
+
+.nav-pills > li {
+  padding-bottom: 10px;
+}
+
+.nav-pills > li > a {
+  background-color: none;
+  border: 1px solid #00C195;
+  color: #00C195;
+}
+
+.nav-pills > li.active > a {
+  background-color: #00C195;
+  color: #fff;
+}
+
+.nav-pills > li.active > a:hover {
+  background-color: #00C195;
+  color: #fff;
+}
+
+.nav-pills > li.active > a:visited {
+  background-color: #00C195;
+  color: #fff;
+}

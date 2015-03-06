@@ -23,7 +23,8 @@ module.exports = function(grunt){
         'bower_components/angular-route/angular-route.js',
         'bower_components/angular-resource/angular-resource.js',
         'bower_components/bootstrap-sass/assets/javascript/bootstrap.js',
-        'bower_components/jquery/dist/jquery.js'
+        'bower_components/jquery/dist/jquery.js',
+        'bower_components/chartjs/Chart.js'
       ]
     }
   };
@@ -47,7 +48,7 @@ module.exports = function(grunt){
               '<%= config.build_dir %>vendor/angular-route.js',
               '<%= config.build_dir %>vendor/angular-resource.js',              
               '<%= config.build_dir %>vendor/jquery.js',
-              '<%= config.build_dir %>vendor/foundation.js',
+              '<%= config.build_dir %>vendor/Chart.js',
               '<%= config.build_dir %>app.js',
               'client/build/components/**/*.js'
             ]
