@@ -11,77 +11,10 @@ app.use(express.static(__dirname + '/../client/build'));
 
 var SOUNDCLOUD_CLIENT_ID = '5791890dd6a8c62dfbe0294c26487095';
 
-//SOUNDCLOUD SETUP
-var soundcloudUsername = 'kygo';
-request('https://api.soundcloud.com/resolve.json?url=http://soundcloud.com/' + soundcloudUsername + '&client_id='+SOUNDCLOUD_CLIENT_ID, function(error, response, body){
-	var object = JSON.parse(body);
-	request('https://api.soundcloud.com/users/' + object.id + '/tracks.json?limit=200&client_id='+SOUNDCLOUD_CLIENT_ID, function(error1, response1, body1){
-		var soundcloudTracks = JSON.parse(body1);
-		var ret = [];
-		for (var i=0;i < soundcloudTracks.length; i++){
-			ret.push({
-				id: soundcloudTracks[i].id,
-				shareLink: soundcloudTracks[i].permalink_url,
-				title: soundcloudTracks[i].title
-			});			
-		}
-	});
-});	
-
-// SPOTIFY SETUP
-var spotifyUsername = 'kygo';
-request('http://ws.spotify.com/search/1/track.json?q=artist:' + spotifyUsername, function(error, response, body){
-	var spotifyTracks = JSON.parse(body);
-	var ret = [];
-	for (var i=0;i < spotifyTracks.tracks.length; i++){
-		var trackId = spotifyTracks.tracks[i].href.split(':')[2];
-		ret.push({
-			id: trackId,
-			shareLink: 'https://open.spotify.com/track/' + trackId,
-			title: spotifyTracks.tracks[i].name
-		});			
-	}
-});
-
-// YOUTUBE SETUP
-var youtubeUsername = 'avicii';
-var ytParams = { 
-	key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
-    maxResults: 50,
-    part: 'contentDetails,snippet',
-    forUsername: youtubeUsername
-};
-request('https://www.googleapis.com/youtube/v3/channels?' + querystring.stringify(ytParams), function(error, response, body){
-	var object = JSON.parse(body);
-	if (object.items.length) {
-		var playlist = object.items[0].contentDetails.relatedPlaylists.uploads;
-		if (playlist) {
-			var ytParams1 = { 
-				key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
-	            maxResults: 50,
-	            part: 'contentDetails,snippet',
-	            playlistId: playlist
-			};
-			request('https://www.googleapis.com/youtube/v3/playlistItems?' + querystring.stringify(ytParams1), function(error1, response1, body1){
-				var object1 = JSON.parse(body1);
-				var ret = [];
-				for (var i=0;i < object1.items.length; i++){
-					ret.push({
-						id: object1.items[i].contentDetails.videoId,
-						shareLink: 'http://youtu.be/' + object1.items[i].contentDetails.videoId,
-						title: object1.items[i].title
-					});
-				}
-			});
-		}
-	} else {
-
-	}
-});
-
 // FACEBOOK SETUP
-request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20share_count,%20comment_count%20FROM%20link_stat%20WHERE%20url%20=%20%22https://soundcloud.com/kygo/firestone-ft-conrad%22', function(error, response, body){
+request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20share_count,%20comment_count%20FROM%20link_stat%20WHERE%20url%20=%20%22' + 'https://soundcloud.com/kygo/firestone-ft-conrad' + '%22', function(error, response, body){
 	var object = JSON.parse(body);
+	console.log(object.data[0].total_count);
 });
 
 // TWITTER SETUP
@@ -90,6 +23,85 @@ request('http://urls.api.twitter.com/1/urls/count.json?url=https://soundcloud.co
 });
 
 var apiRouter = express.Router();
+
+apiRouter.get('/spotify/tracks', function(req, res){
+	var spotifyUsername = req.param('username');
+	request('http://ws.spotify.com/search/1/track.json?q=artist:' + spotifyUsername, function(error, response, body){
+		var spotifyTracks = JSON.parse(body);
+		var ret = [];
+		for (var i=0;i < spotifyTracks.tracks.length; i++){
+			var trackId = spotifyTracks.tracks[i].href.split(':')[2];
+			ret.push({
+				id: trackId,
+				shareLink: 'https://open.spotify.com/track/' + trackId,
+				title: spotifyTracks.tracks[i].name
+			});			
+		}
+		res.json(ret);
+	});
+})
+
+apiRouter.get('/soundcloud/tracks', function(req, res){
+	var soundcloudUsername = req.param('username');
+	request('https://api.soundcloud.com/resolve.json?url=http://soundcloud.com/' + soundcloudUsername + '&client_id='+SOUNDCLOUD_CLIENT_ID, function(error, response, body){
+		var object = JSON.parse(body);
+		if (object.id) {
+			request('https://api.soundcloud.com/users/' + object.id + '/tracks.json?limit=200&client_id='+SOUNDCLOUD_CLIENT_ID, function(error1, response1, body1){
+				var soundcloudTracks = JSON.parse(body1);
+				var ret = [];
+				for (var i=0;i < soundcloudTracks.length; i++){
+					ret.push({
+						id: soundcloudTracks[i].id,
+						shareLink: soundcloudTracks[i].permalink_url,
+						title: soundcloudTracks[i].title
+					});			
+				}
+				res.json(ret);
+			});
+		} else {
+			res.json([]);
+		}
+	});	
+})
+
+apiRouter.get('/youtube/tracks', function(req, res){
+	var youtubeUsername = req.param('username');
+	var ytParams = { 
+		key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
+	    maxResults: 50,
+	    part: 'contentDetails,snippet',
+	    forUsername: youtubeUsername
+	};
+	request('https://www.googleapis.com/youtube/v3/channels?' + querystring.stringify(ytParams), function(error, response, body){
+		var object = JSON.parse(body);
+		if (object.items.length) {
+			var playlist = object.items[0].contentDetails.relatedPlaylists.uploads;
+			if (playlist) {
+				var ytParams1 = { 
+					key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
+		            maxResults: 50,
+		            part: 'contentDetails,snippet',
+		            playlistId: playlist
+				};
+				request('https://www.googleapis.com/youtube/v3/playlistItems?' + querystring.stringify(ytParams1), function(error1, response1, body1){
+					var object1 = JSON.parse(body1);
+					var ret = [];
+					for (var i=0;i < object1.items.length; i++){
+						ret.push({
+							id: object1.items[i].contentDetails.videoId,
+							shareLink: 'https://www.youtube.com/watch?v=' + object1.items[i].contentDetails.videoId,
+							title: object1.items[i].snippet.title
+						});
+					}
+					res.json(ret);
+				});
+			}
+		} else {
+			res.json([]);
+		}
+	});
+})
+
 apiRouter.get('/', function(reeq, res){
 	res.send('hei');
 })
