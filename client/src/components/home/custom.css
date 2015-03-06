@@ -55,3 +55,19 @@ td:hover, td:active {
   height: 50px;
   margin-right: 90px;
 }
+
+.fanbase-stats {
+  border-radius: 10px;
+  border: 1px solid #222;
+  padding: 8px;
+  text-align: center;
+}
+
+.no-list {
+  border-radius: 10px;
+  border: 1px solid #222;
+  padding: 8px;
+  text-align: center;
+  list-style: none;
+  text-align: center;
+}
