@@ -4,8 +4,6 @@
 <h1>Track Shares</h1>
 <p>{{trackShares}}</p>
 
-<<<<<<< HEAD
-=======
 <img src="img/logo.png"/>
 
 <div class="row margin">
@@ -20,18 +18,9 @@
   </ul>
   </div>
   <div class="col-md-2">
-  <input type="text" class="form-control" placeholder="Search">
-  <table class="table table-hover">
-    <tr><td>Magic</td></tr>
-    <tr><td>Trouble</td></tr>
-    <tr><td>Lost!</td></tr>
-    <tr><td>Rainy Day</td></tr>
-    <tr><td>Fix You</td></tr>
-    <tr><td>Low</td></tr>
-    <tr><td>Sky Full of Stars</td></tr>
-    <tr><td>A Rush of Blood To The Head</td></tr>
-    <tr><td>Politik</td></tr>
-    <tr><td>Warning Sign</td></tr>
+  <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText">
+    <tr><td> {{track.title}}</td></tr>
   </table>
     
   </div>
@@ -40,6 +29,3 @@
     <canvas id="myChart" width="400" height="400"></canvas>
 
   </div>
-
->>>>>>> origin/master
-
