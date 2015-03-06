@@ -32,12 +32,17 @@
   <div class="col-md-3 tracklist">
   <h4> Channel: {{ source ? source: 'None'}}</h4>
   <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
-
- <img class="logo" src="src/assets/loader.gif" ng-show="loaded" width="200px" heigth="200px"/>
-
-  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10" ng-click="showTrack(track)">
-    <tr><td> {{track.title}}</td></tr>
-  </table>
+<div style=height:450px;overflow:auto>
+  <div style="cursor:pointer;margin-bottom:3px;margin-top:3px;"; ng-repeat="track in tracks | filter:searchText" ng-click="showTrack(track)">
+      <div style=display:table-cell;>
+          <img class="media-object" ng-src="{{ track.image ? track.image : 'src/assets/default-cd-icon.png'}}" style="width: 40px; height: 40px;">
+      </div>
+      <div style=display:table-cell;vertical-align:middle;padding-left:8px;>
+        <h5 style=margin-top:5px;> {{track.title}}</h5>
+      </div>
+    </div>
+  <img class="logo" src="src/assets/loader.gif" ng-show="loaded" width="200px" heigth="200px"/>
+</div>
     
   </div>
   <div class="col-md-7" ng-show=currentTrack>

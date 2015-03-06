@@ -45,12 +45,13 @@ td:hover, td:active {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
+table {
+  margin-bottom: 0px !important;
+}
+
 .floatright {
   float: right;
 }
 .floatleft {
   float: left;
 }
->>>>>>> origin/master
