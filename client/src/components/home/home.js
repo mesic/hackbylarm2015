@@ -99,11 +99,8 @@ angular.module('mmApp.home', [])
 		for (var i = 0; i < numberOfDays; i++) { 
 			
 			var date = new Date();
-<<<<<<< HEAD
  			date.setDate(date.getDate() - i - 1);
-=======
  			date.setDate(date.getDate() - numberOfDays + i);
->>>>>>> origin/master
 			var dateLabel = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
 
 
@@ -238,14 +235,13 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
-<<<<<<< HEAD
 
 	    //Calculate total shares per platform
 	    var totalFacebookShares = calculateTotalShares(facebookData);
 	    var totalTwitterShares = calculateTotalShares(twitterData);
 
 	    $('#graph').html(
-	    	'<h4>Shares for ' + data.title + '</h4>' +
+	    	'<h4>' + data.title + '</h4>' +
 	    	'<div>' +
 	    		'<span>Total shares per platform: </span>' +	    	
 	    		'<span style="color: #3b5998">Facebook: &#x25cf ' + totalFacebookShares + '</span>' +
@@ -253,9 +249,6 @@ angular.module('mmApp.home', [])
 	    	'</div> </br>' + 
 	    	'<canvas id="myChart" width="550" height="400"></canvas>');
 	    
-=======
-	    $('#graph').html('<h4 class="floatleft">'+ data.title + '</h4><canvas id="myChart" width="700" height="400"></canvas>');
->>>>>>> origin/master
 	    var canvas = document.getElementById("myChart")
 	    var ctx = canvas.getContext("2d");
 	    var myLineChart = new Chart(ctx).Line(chartdata, options);   
