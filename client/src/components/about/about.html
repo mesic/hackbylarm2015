@@ -1,55 +1,24 @@
-<input type="text" class="form-control" placeholder="" value="kanyewestvevo" ng-model="youtubeUsername">
-
-<button ng-click="youtubeFanbase(youtubeUsername)">try new username</button>
-
 <h1>{{fanbaseData}}</h1>
 
-<div class="row">
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_fb.png" /></li>
-			<li class="no-list" id="facebook-total"></li>
-			<li class="no-list" id="facebook-sinceYesterday"></li>
-		</ul>
-	</div>
-
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_tw.png" /></li>
-			<li class="no-list" id="twitter-total"></li>
-			<li class="no-list" id="twitter-sinceYesterday"></li>
-		</ul>
-	</div>
-
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_ig.jpg" /></li>
-			<li class="no-list" id="instagram-total"></li>
-			<li class="no-list" id="instagram-sinceYesterday"></li>
-		</ul>
-	</div>
-
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_sc.png" /></li>
-			<li class="no-list" id="soundcloud-total"></li>
-			<li class="no-list" id="soundcloud-sinceYesterday"></li>
-		</ul>
-	</div>
-
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_sf.jpg" /></li>
-			<li class="no-list" id="spotify-total"></li>
-			<li class="no-list" id="spotify-sinceYesterday"></li>
-		</ul>
-	</div>
-
-	<div class="col-md-2">
-		<ul>
-			<li class="no-list"><img class="some-img" src="src/assets/ic_yt.png" /></li>
-			<li class="no-list" id="youtube-total">{{youtubeFansebase.total}}</li>
-			<li class="no-list" id="youtube-sinceYesterday"></li>
-		</ul>
-	</div>
+<div class="row margin">
+  <div class="col-md-12">
+    <table>
+    	<tr>
+	    	<td><img class="some-img" src="src/assets/ic_fb.png" /></td>
+	    	<td><img class="some-img" src="src/assets/ic_tw.png" /></td>
+	    	<td><img class="some-img" src="src/assets/ic_ig.jpg" /></td>
+	    	<td><img class="some-img" src="src/assets/ic_sc.png" /></td>
+	    	<td><img class="some-img" src="src/assets/ic_sf.jpg" /></td>
+	    	<td><img class="some-img" src="src/assets/ic_yt.png" /></td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li class="no-list" id="facebook-total">12</li>
+					<li class="no-list" id="facebook-sinceYesterday">12321</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+  </div>
 </div>

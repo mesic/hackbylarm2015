@@ -26,5 +26,6 @@ angular.module('mmApp.homeService', []).service('userService',
 
   this.soundcloudTrack = function(){
     return $resource('http://localhost:8080/api/soundcloud/tracks/:id', {id:'@id'});
-  } 
+  }    
+
 }]);

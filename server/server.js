@@ -241,6 +241,54 @@ apiRouter.get('/youtube/tracks/:id', function(req, res){
 	});
 })
 
+
+apiRouter.get('/twitter/stats', function(req, res){
+	
+
+
+	var twitterUsername = req.param('username');
+
+	getTwitterId(twitterUsername,function(twitterId){
+
+
+		request('http://api.twittercounter.com/?twitter_id='+twitterId+'&apikey=39578770216b332a668c8b7a5d3e218e', function(error, response, body){
+			
+
+			var twitterStats = JSON.parse(body);
+			
+			var totalFans = twitterStats["followers_current"];
+			var newFans = twitterStats["followers_yesterday"];
+
+			var ret = {total:totalFans,newFans:totalFans-newFans};
+
+			res.json(ret);
+
+		});
+
+	});
+
+})
+
+function getTwitterId(username, callback){
+	var Twitter = require('twitter');
+	
+	var client = new Twitter({
+	  consumer_key: 'xP3wLS2YuUylvFAfTDtlfdRKJ',
+	  consumer_secret: 'f4k88mZAWIJDc3EnCf98qMb6EZapsQmUO6NFrdiyGlrG6tegcP',
+	  access_token_key: '191204550-uWKz5g8n28B9IpKmjJy30imvdwe56ayr1oQ9H3aK',
+	  access_token_secret: 'HBZ1ABQnZnI3dj8GM7QCkybtdCKRiv9twVjZ9wum6x8td'
+	});
+	 
+	var params = {screen_name: username};
+	client.get('users/show.json', params, function(error, twUser, response){
+	  if (!error) {
+	 	callback(twUser["id"]);
+	  }
+	});
+
+}
+
+
 //Get Youtube fans
 apiRouter.get('/youtube/fanbase', function(req, res){
 	var numberSubs = 0;

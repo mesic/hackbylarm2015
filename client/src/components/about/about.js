@@ -6,6 +6,7 @@ angular.module('mmApp.about', [])
 .controller('AboutController', 
 	['$scope', 'aboutService', function($scope, aboutService) {
 
+<<<<<<< HEAD
 	if(angular.isUndefined($scope.youtubeUsername))
 		$scope.youtubeUsername = "kanyewestvevo"
 	var d = "asd";
@@ -14,14 +15,15 @@ angular.module('mmApp.about', [])
 			$scope.youtubeFansebase = data;
 		});		
 	}
+=======
+	aboutService.loadFanbase().query(function (data) {
+		$scope.fanbaseData = data;
+>>>>>>> origin/master
 
-	// aboutService.loadFanbase().query(function (data) {
-	// 	$scope.fanbaseData = data;
-
-	// 	updateFanbase(data[0]);
+		updateFanbase(data[0]);
 
 		
- //    });
+    });
 
 	function updateFanbase(data){
 
@@ -32,5 +34,5 @@ angular.module('mmApp.about', [])
 		}
 
 	}
-
+    
 }]);
