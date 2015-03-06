@@ -14,9 +14,12 @@ angular.module('mmApp.home', [])
 	['$scope', 'userService', function($scope, UserService) {
 	
 	$scope.source = '';
+	$scope.youtubeUsername = 'ColdplayVEVO';
+	$scope.spotifyUsername = 'avicii';
+	$scope.soundcloudUsername = 'aviciiofficial';
 
  	$scope.loadYoutubeTracks = function(){
-		UserService.youtubeTracks().query({'username': 'ColdplayVEVO'}, function (data) {
+		UserService.youtubeTracks().query({'username': $scope.youtubeUsername}, function (data) {
 			$scope.tracks = data;
 			$scope.source = 'Youtube';
 			$('#graph').html('');
@@ -25,7 +28,7 @@ angular.module('mmApp.home', [])
 
     //Load all Spotify tracks
  	$scope.loadSpotifyTracks = function(){
- 		UserService.spotifyTracks().query({'username': '4gzpq5DPGxSnKTe4SA8HAU'}, function (data) {
+ 		UserService.spotifyTracks().query({'username': $scope.spotifyUsername}, function (data) {
     		$scope.tracks = data;
     		$scope.source = 'Spotify';
     		$('#graph').html('');
@@ -35,7 +38,7 @@ angular.module('mmApp.home', [])
 
     //Load all SoundCloud tracks
  	$scope.loadSoundcloudTracks = function(){
- 		UserService.soundcloudTracks().query({'username': 'coldplayofficial'}, function (data) {
+ 		UserService.soundcloudTracks().query({'username': $scope.soundcloudUsername}, function (data) {
     		$scope.tracks = data;
     		$scope.source = 'SoundCloud';
     		$('#graph').html('');
