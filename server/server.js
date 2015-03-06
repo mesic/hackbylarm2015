@@ -259,7 +259,7 @@ apiRouter.get('/twitter/stats', function(req, res){
 			var totalFans = twitterStats["followers_current"];
 			var newFans = twitterStats["followers_yesterday"];
 
-			var ret = {total:totalFans,newFans:totalFans-newFans};
+			var ret = {total:totalFans,sinceYesterday:totalFans-newFans};
 
 			res.json(ret);
 
