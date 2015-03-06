@@ -12,28 +12,40 @@ angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
+	
+	$scope.source = '';
 
  	$scope.loadYoutubeTracks = function(){
-		UserService.youtubeTracks().query(function (data) {
+		UserService.youtubeTracks().query({'username': 'ColdplayVEVO'}, function (data) {
 			$scope.tracks = data;
+			$scope.source = 'Youtube';
+			$('#graph').html('');
 		});
 	}
 
     //Load all Spotify tracks
  	$scope.loadSpotifyTracks = function(){
- 		UserService.spotifyTracks().query(function (data) {
+ 		UserService.spotifyTracks().query({'username': '4gzpq5DPGxSnKTe4SA8HAU'}, function (data) {
     		$scope.tracks = data;
+    		$scope.source = 'Spotify';
+    		$('#graph').html('');
     	});
  	}
 
 
     //Load all SoundCloud tracks
  	$scope.loadSoundcloudTracks = function(){
- 		UserService.soundcloudTracks().query(function (data) {
+ 		UserService.soundcloudTracks().query({'username': 'coldplayofficial'}, function (data) {
     		$scope.tracks = data;
-			chartInit(data);
+    		$scope.source = 'SoundCloud';
+    		$('#graph').html('');
     	});
+ 	}
+
+ 	$scope.showTrack = function(track){
+ 		chartInit(track);
  	} 	
+ 	
 
 
 	function getDatesForChart(numberOfDays){
@@ -69,35 +81,35 @@ angular.module('mmApp.home', [])
 		    case 0:
 		        
 		    	// 7 days, show hours (7*24h = 168h)
-				facebookData = data[selectedItem]["shares"]["fb"]["hours"].slice(0,168);
-				twitterData = data[selectedItem]["shares"]["twitter"]["hours"].slice(0,168);
+				facebookData = data["shares"]["fb"]["hours"].slice(0,168);
+				twitterData = data["shares"]["twitter"]["hours"].slice(0,168);
 
 
 		        break;
 		    case 1:
 		        
 				// 14 days, show hours
-				facebookData = data[selectedItem]["shares"]["fb"]["hours"];
-				twitterData = data[selectedItem]["shares"]["twitter"]["hours"];
+				facebookData = data["shares"]["fb"]["hours"];
+				twitterData = data["shares"]["twitter"]["hours"];
 
 		        break;
 		    case 2:
 				// 30 days, show days		        
 
-				facebookData = data[selectedItem]["shares"]["fb"]["days"].slice(0,30);
-				twitterData = data[selectedItem]["shares"]["twitter"]["days"].slice(0,30);
+				facebookData = data["shares"]["fb"]["days"].slice(0,30);
+				twitterData = data["shares"]["twitter"]["days"].slice(0,30);
 
 		        break;
 		    case 3:
 				// 90 days, show days
-				facebookData = data[selectedItem]["shares"]["fb"]["days"].slice(0,90);
-				twitterData = data[selectedItem]["shares"]["twitter"]["days"].slice(0,90);
+				facebookData = data["shares"]["fb"]["days"].slice(0,90);
+				twitterData = data["shares"]["twitter"]["days"].slice(0,90);
 
 				break;
 		}
 
 
-	    var data = {
+	    var chartdata = {
 	        labels: labels,
 	        datasets: [
 	            {
@@ -122,10 +134,10 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
-	    $('#graph').html('<canvas id="myChart" width="400" height="400"></canvas>');
+	    $('#graph').html('<h4>Shares for ' + data.title + '</h4><canvas id="myChart" width="550" height="400"></canvas>');
 	    var canvas = document.getElementById("myChart")
 	    var ctx = canvas.getContext("2d");
-	    var myLineChart = new Chart(ctx).Line(data, options);   
+	    var myLineChart = new Chart(ctx).Line(chartdata, options);   
 	}     
 
 }]);
