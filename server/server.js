@@ -14,16 +14,22 @@ var SOUNDCLOUD_CLIENT_ID = '5791890dd6a8c62dfbe0294c26487095';
 
 function generateSharesPerHourForLastTwoWeeks() {
 	var ret = [];
+
+	var floor = Math.floor(Math.random() * 100);
+
 	for (i=0;i<14*24;i++) {
-		ret.push(Math.floor(Math.random() * 10) + 5);
+		ret.push(Math.floor(Math.random() * 10) + floor+(i%24));
 	}
 	return ret;
 }
 
 function generateSharesPerDayForLast90Days() {
 	var ret = [];
+
+	var floor = Math.floor(Math.random() * 240) + 50;
+
 	for (i=0;i<90;i++) {
-		ret.push(Math.floor(Math.random() * 150) + 90);
+		ret.push(Math.floor(Math.random() * 24) + floor+(10*(i%7)));
 	}
 	return ret;
 }
