@@ -20,6 +20,7 @@ angular.module('mmApp.about', [])
 
 			$('#'+k+'-total').html(data[k].total);
 			$('#'+k+'-sinceYesterday').html(data[k].sinceYesterday);
+		}
 
 	}
     
