@@ -38,6 +38,13 @@ request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20
 request('http://urls.api.twitter.com/1/urls/count.json?url=https://soundcloud.com/kygo/firestone-ft-conrad', function(error, response, body){
 	var object = JSON.parse(body);
 });
+
+// GOOGLE BLOG SEARCH SETUP
+request('https://ajax.googleapis.com/ajax/services/search/blogs?v=1.0&q=kygo', function(error, response, body){
+	var object = JSON.parse(body);
+	console.log(object.responseData.cursor.estimatedResultCount);
+});
+
 **/
 
 var apiRouter = express.Router();

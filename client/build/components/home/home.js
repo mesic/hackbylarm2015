@@ -5,12 +5,6 @@ angular.module('mmApp.home', [])
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
   	
-
-  	//Load shares on a specific track
- 	UserService.trackShares().query(function (data) {
-    	$scope.trackShares = data;
-    });
-
     //Load all tracks
  	$scope.loadYoutubeTracks = function(){
  		UserService.youtubeTracks().query(function (data) {

@@ -114,15 +114,15 @@ module.exports = function(grunt){
 
     watch: {
       scss: {
-        files: '<%= config.client_dir %>**/*.scss',
-        tasks: ['sass:dev'],
+        files: '<%= config.client_dir %>src/**/*.scss',
+        tasks: ['build'],
         options: {
           livereload: true
         }
       },
       js: {
-        files: '<%= config.client_dir %>**/*.js',
-        tasks: ['copy:app_js'],
+        files: '<%= config.client_dir %>src/**/*.js',
+        tasks: ['build'],
         options: {
           options: {
             livereload: true
@@ -130,8 +130,8 @@ module.exports = function(grunt){
         }
       },
       html: {
-        files: '<%= config.client_dir %>**/*.html',
-        tasks: ['copy:html'],
+        files: '<%= config.client_dir %>src/**/*.html',
+        tasks: ['build'],
         options: {
           livereload: true
         }

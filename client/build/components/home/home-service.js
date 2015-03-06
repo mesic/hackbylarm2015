@@ -5,12 +5,15 @@ angular.module('mmApp.homeService', []).service('userService',
 
   //List all tracks of artist per plattform
   this.youtubeTracks = function(){
-  	return $resource('http://localhost:8080/api/tracks');
+  	return $resource('http://localhost:8080/api/youtube/tracks');
   }
 
-  //Number of shares per track
-  this.trackShares = function(){
-  	return $resource('http://localhost:8080/api/tracks/1');
+  this.spotifyTracks = function(){
+  	return $resource('http://localhost:8080/api/spotify/tracks');
   }
+
+  this.soundcloudTracks = function(){
+  	return $resource('http://localhost:8080/api/soundcloud/tracks');
+  }    
 
 }]);
