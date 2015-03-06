@@ -98,11 +98,7 @@ angular.module('mmApp.home', [])
 
 
 	    var data = {
-<<<<<<< HEAD
-	        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-=======
 	        labels: labels,
->>>>>>> origin/master
 	        datasets: [
 	            {
 	                label: "My First dataset",
@@ -111,13 +107,8 @@ angular.module('mmApp.home', [])
 	                pointColor: "rgba(59,89,152,1.0)",
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
-<<<<<<< HEAD
 	                pointHighlightStroke: "rgba(59,89,152,1.0)",
-	                data: [65, 59, 80, 81, 56, 55, 85]
-=======
-	                pointHighlightStroke: "rgba(220,220,220,1)",
 	                data: facebookData
->>>>>>> origin/master
 	            },
 	            {
 	                label: "My Second dataset",
@@ -126,13 +117,8 @@ angular.module('mmApp.home', [])
 	                pointColor: "rgba(0,172,237,1.0)",
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
-<<<<<<< HEAD
 	                pointHighlightStroke: "rgba(0,172,237,1.0)",
-	                data: [28, 48, 40, 19, 86, 27, 76]
-=======
-	                pointHighlightStroke: "rgba(151,187,205,1)",
 	                data: twitterData
->>>>>>> origin/master
 	            }
 	        ]
 	    };
