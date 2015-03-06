@@ -6,26 +6,25 @@
   <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation"><a href="#/home">All Channels</a></li>
+      <br />
       <li role="presentation" ng-click="loadYoutubeTracks()">
         <a href="#/home">YouTube</a>
       </li>
+      <li role="presentation">
+        <input type="text" class="form-control" placeholder="" ng-model="youtubeUsername">
+      </li>
+      <br />
       <li role="presentation" ng-click="loadSoundcloudTracks()">
         <a href="#/home">SoundCloud</a>
       </li>
-
+      <li role="presentation">
+        <input type="text" class="form-control" placeholder="" ng-model="soundcloudUsername">
+      </li>
+      <br />
       <li role="presentation" ng-click="loadSpotifyTracks()">
         <a href="#/home">Spotify</a>
       </li>
       <li role="presentation">
-        <h5>Youtube username:</h5>
-        <input type="text" class="form-control" placeholder="" ng-model="youtubeUsername">
-      </li>
-      <li role="presentation">
-        <h5>Soundcloud username:</h5>
-        <input type="text" class="form-control" placeholder="" ng-model="soundcloudUsername">
-      </li>
-      <li role="presentation">
-        <h5>Spotify username / ID:</h5>
         <input type="text" class="form-control" placeholder="" ng-model="spotifyUsername">
       </li>
   </ul>
