@@ -288,10 +288,31 @@ function getTwitterId(username, callback){
 
 }
 
-apiRouter.get('/', function(reeq, res){
-	res.send('hei');
-})
 
+//Get Youtube fans
+apiRouter.get('/youtube/fanbase', function(req, res){
+	var numberSubs = 0;
+	var youtubeUsername = req.param('username');
+	var ytParams = { 
+		key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
+	    maxResults: 50,
+	    part: 'contentDetails,snippet,statistics',
+	    forUsername: youtubeUsername
+	};
+	request('https://www.googleapis.com/youtube/v3/channels?' + querystring.stringify(ytParams), function(error, response, body){
+		var object = JSON.parse(body);
+		if(object.etag && object.items.length > 0){
+			numberSubs = object.items[0].statistics.subscriberCount;
+			var jsonVal = {
+			    "total": numberSubs,
+			    "sinceYesterday" : 10				
+			};
+			res.json(jsonVal);
+		}else{
+			res.json("");
+		}
+	});
+})
 //Mock data
 //TRACKS
 apiRouter.get('/tracks', function(req, res){
