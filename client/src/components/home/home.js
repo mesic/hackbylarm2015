@@ -1,18 +1,37 @@
 'use strict';
 
 
-var timeFrame = [7,14,30,90];
-
-var selectedTimeFrame = 1;
-
-var selectedItem = 0;
-
-
 angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
-	
+
+	$scope.selectedTimeFrame = {
+	  days: 7,
+	  id: 1,
+	  label: 'Last 7 days',
+	};
+
+	$scope.timeFrames = [{
+	  days: 7,
+	  id: 1,
+	  label: 'Last 7 days',
+	}, {
+	  days: 14,
+	  id:2,
+	  label: 'Last 14 days',
+	}, {
+	  days: 30,
+	  id:3,
+	  label: 'Last 30 days',
+	}, {
+	  days: 90,
+	  id:4,
+	  label: 'Last 90 days',
+	}];	
+
+	var currentTrack;
+
 	$scope.source = '';
 	$scope.youtubeUsername = 'ColdplayVEVO';
 	$scope.spotifyUsername = 'avicii';
@@ -47,8 +66,12 @@ angular.module('mmApp.home', [])
 
  	$scope.showTrack = function(track){
  		chartInit(track);
+ 		currentTrack = track;
  	} 	
  	
+ 	$scope.updateChart = function() {
+ 		chartInit(currentTrack);
+ 	}
 
 
 	function getDatesForChart(numberOfDays){
@@ -74,14 +97,14 @@ angular.module('mmApp.home', [])
 	function chartInit(data){
 	    var options = {bezierCurve: false};
 
-	    var labels = getDatesForChart(timeFrame[selectedTimeFrame]);
+	    var labels = getDatesForChart($scope.selectedTimeFrame.days);
 
 	    var facebookData = [];
 	    var twitterData = [];
 
 
-	    switch (selectedTimeFrame) {
-		    case 0:
+	    switch ($scope.selectedTimeFrame.days) {
+		    case 7:
 		        
 		    	// 7 days, show hours (7*24h = 168h)
 				facebookData = data["shares"]["fb"]["hours"].slice(0,168);
@@ -89,21 +112,21 @@ angular.module('mmApp.home', [])
 
 
 		        break;
-		    case 1:
+		    case 14:
 		        
 				// 14 days, show hours
 				facebookData = data["shares"]["fb"]["hours"];
 				twitterData = data["shares"]["twitter"]["hours"];
 
 		        break;
-		    case 2:
+		    case 30:
 				// 30 days, show days		        
 
 				facebookData = data["shares"]["fb"]["days"].slice(0,30);
 				twitterData = data["shares"]["twitter"]["days"].slice(0,30);
 
 		        break;
-		    case 3:
+		    case 90:
 				// 90 days, show days
 				facebookData = data["shares"]["fb"]["days"].slice(0,90);
 				twitterData = data["shares"]["twitter"]["days"].slice(0,90);
