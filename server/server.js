@@ -75,8 +75,18 @@ request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20
 });
 
 var apiRouter = express.Router();
-apiRouter.get('/', function(req, res){
+apiRouter.get('/', function(reeq, res){
 	res.send('hei');
+})
+
+//Mock data
+//TRACKS
+apiRouter.get('/tracks', function(req, res){
+	res.json(require("../client/mock_data/tracks.json"));
+})
+
+apiRouter.get('/tracks/1', function(req, res){
+	res.json(require("../client/mock_data/track_shares.json"));
 })
 
 app.use('/api', apiRouter);

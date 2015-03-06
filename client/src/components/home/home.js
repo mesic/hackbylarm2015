@@ -3,19 +3,17 @@
 angular.module('mmApp.home', [])
 
 .controller('HomeController', 
-	['$scope', 'userService', function($scope, userService) {
-  
-  // var users = userService.getUsers();
-  
-  // users.success(function(data){
-  //   $scope.users = data;
-  // });
-	var s  = 2;
-	console.log(s);
+	['$scope', 'userService', function($scope, UserService) {
+  	
 
- 	userService.test().query(function (data) {
-    	$scope.almir = data;
+  	//Load shares on a specific track
+ 	UserService.trackShares().query(function (data) {
+    	$scope.trackShares = data;
     });
 
+    //Load all tracks
+ 	UserService.tracks().query(function (data) {
+    	$scope.tracks = data;
+    });
 
 }]);
