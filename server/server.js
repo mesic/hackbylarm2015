@@ -293,6 +293,7 @@ function getTwitterId(username, callback){
 apiRouter.get('/youtube/fanbase', function(req, res){
 	var numberSubs = 0;
 	var youtubeUsername = req.param('username');
+	youtubeUsername = "kanyewestvevo";
 	var ytParams = { 
 		key: 'AIzaSyDEJh6AKpKH3-0qC7bPvCSPVuIIIt4WSqI',
 	    maxResults: 50,

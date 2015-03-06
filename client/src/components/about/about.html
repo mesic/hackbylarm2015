@@ -1,7 +1,4 @@
 <h1>Fanbase</h1>
-<div ng-view="" class="ng-scope"><input type="text" class="form-control ng-pristine ng-valid ng-scope ng-touched" placeholder="" value="kanyewestvevo" ng-model="youtubeUsername">
-
-<button ng-click="youtubeFanbase(youtubeUsername)" class="ng-scope">try new username</button>
 
 <div class="row">
 	<div class="col-md-2">
@@ -46,7 +43,7 @@
 	<div class="col-md-2">
 	  	<ul>
 	  		<li class="no-list" style="border:none;"><img class="some-img" src="src/assets/ic_yt.png" /></li>
-	  		<li class="no-list" id="youtube-total"></li>
+	  		<li class="no-list" id="youtube-total">{{youtubeFanbase.total}}</li>
 	  		<li class="no-list" id="youtube-sinceYesterday"></li>
 		</ul>
 	</div>
