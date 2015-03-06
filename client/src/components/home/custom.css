@@ -44,3 +44,10 @@ td:hover {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.floatright {
+  float: right;
+}
+.floatleft {
+  float: left;
+}

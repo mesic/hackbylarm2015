@@ -206,7 +206,7 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
-	    $('#graph').html('<h4>Shares for ' + data.title + '</h4><canvas id="myChart" width="550" height="400"></canvas>');
+	    $('#graph').html('<h4 class="floatleft">'+ data.title + '</h4><canvas id="myChart" width="700" height="400"></canvas>');
 	    var canvas = document.getElementById("myChart")
 	    var ctx = canvas.getContext("2d");
 	    var myLineChart = new Chart(ctx).Line(chartdata, options);   
