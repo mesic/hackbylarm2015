@@ -30,12 +30,8 @@
       </li>
   </ul>
   </div>
-<<<<<<< Updated upstream
-  <div class="col-md-3">
-  <h4> Channel: {{ source ? source: 'None'}}</h4>
-=======
   <div class="col-md-3 tracklist">
->>>>>>> Stashed changes
+  <h4> Channel: {{ source ? source: 'None'}}</h4>
   <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
   <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10" ng-click="showTrack(track)">
     <tr><td> {{track.title}}</td></tr>
