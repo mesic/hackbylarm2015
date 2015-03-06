@@ -122,8 +122,9 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
-
-	    var ctx = document.getElementById("myChart").getContext("2d");
+	    $('#graph').html('<canvas id="myChart" width="400" height="400"></canvas>');
+	    var canvas = document.getElementById("myChart")
+	    var ctx = canvas.getContext("2d");
 	    var myLineChart = new Chart(ctx).Line(data, options);   
 	}     
 
