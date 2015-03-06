@@ -11,16 +11,34 @@ app.use(express.static(__dirname + '/../client/build'));
 
 var SOUNDCLOUD_CLIENT_ID = '5791890dd6a8c62dfbe0294c26487095';
 
+function generateSharesPerHourForLastTwoWeeks() {
+	var ret = [];
+	for (i=0;i<14*24;i++) {
+		ret.push(Math.floor(Math.random() * 18) + 1);
+	}
+	return ret;
+}
+
+function generateSharesPerDayForLast90Days() {
+	var ret = [];
+	for (i=0;i<90;i++) {
+		ret.push(Math.floor(Math.random() * 150) + 20);
+	}
+	return ret;
+}
+
 // FACEBOOK SETUP
+/**
 request('https://graph.facebook.com/fql?q=SELECT%20like_count,%20total_count,%20share_count,%20comment_count%20FROM%20link_stat%20WHERE%20url%20=%20%22' + 'https://soundcloud.com/kygo/firestone-ft-conrad' + '%22', function(error, response, body){
 	var object = JSON.parse(body);
-	console.log(object.data[0].total_count);
+	console.log(object.data[0].share_count);
 });
 
 // TWITTER SETUP
 request('http://urls.api.twitter.com/1/urls/count.json?url=https://soundcloud.com/kygo/firestone-ft-conrad', function(error, response, body){
 	var object = JSON.parse(body);
 });
+**/
 
 var apiRouter = express.Router();
 
@@ -34,7 +52,17 @@ apiRouter.get('/spotify/tracks', function(req, res){
 			ret.push({
 				id: trackId,
 				shareLink: 'https://open.spotify.com/track/' + trackId,
-				title: spotifyTracks.tracks[i].name
+				title: spotifyTracks.tracks[i].name,
+				shares: {
+					fb: {
+						hours: generateSharesPerHourForLastTwoWeeks(),
+						days: generateSharesPerDayForLast90Days()
+					},
+					twitter: {
+						hours: generateSharesPerHourForLastTwoWeeks(),
+						days: generateSharesPerDayForLast90Days()
+					}
+				}
 			});			
 		}
 		res.json(ret);
@@ -53,7 +81,17 @@ apiRouter.get('/soundcloud/tracks', function(req, res){
 					ret.push({
 						id: soundcloudTracks[i].id,
 						shareLink: soundcloudTracks[i].permalink_url,
-						title: soundcloudTracks[i].title
+						title: soundcloudTracks[i].title,
+						shares: {
+							fb: {
+								hours: generateSharesPerHourForLastTwoWeeks(),
+								days: generateSharesPerDayForLast90Days()
+							},
+							twitter: {
+								hours: generateSharesPerHourForLastTwoWeeks(),
+								days: generateSharesPerDayForLast90Days()
+							}
+						}
 					});			
 				}
 				res.json(ret);
@@ -90,7 +128,17 @@ apiRouter.get('/youtube/tracks', function(req, res){
 						ret.push({
 							id: object1.items[i].contentDetails.videoId,
 							shareLink: 'https://www.youtube.com/watch?v=' + object1.items[i].contentDetails.videoId,
-							title: object1.items[i].snippet.title
+							title: object1.items[i].snippet.title,
+							shares: {
+								fb: {
+									hours: generateSharesPerHourForLastTwoWeeks(),
+									days: generateSharesPerDayForLast90Days()
+								},
+								twitter: {
+									hours: generateSharesPerHourForLastTwoWeeks(),
+									days: generateSharesPerDayForLast90Days()
+								}
+							}
 						});
 					}
 					res.json(ret);
