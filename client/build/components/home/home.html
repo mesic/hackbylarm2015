@@ -4,44 +4,6 @@
 <h1>Track Shares</h1>
 <p>{{trackShares}}</p>
 
-<<<<<<< HEAD
-		<div style="width: 50%">
-			<canvas id="canvas" height="450" width="600"></canvas>
-		</div>
-
-
-	<script>
-	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-
-	var barChartData = {
-		labels : ["January","February","March","April","May","June","July"],
-		datasets : [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			},
-			{
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,0.8)",
-				highlightFill : "rgba(151,187,205,0.75)",
-				highlightStroke : "rgba(151,187,205,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			}
-		]
-
-	}
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myBar = new Chart(ctx).Bar(barChartData, {
-			responsive : true
-		});
-	}
-
-	</script>
-=======
 <img src="img/logo.png"/>
 
 <div class="row margin">
@@ -56,18 +18,9 @@
   </ul>
   </div>
   <div class="col-md-2">
-  <input type="text" class="form-control" placeholder="Search">
-  <table class="table table-hover">
-    <tr><td>Magic</td></tr>
-    <tr><td>Trouble</td></tr>
-    <tr><td>Lost!</td></tr>
-    <tr><td>Rainy Day</td></tr>
-    <tr><td>Fix You</td></tr>
-    <tr><td>Low</td></tr>
-    <tr><td>Sky Full of Stars</td></tr>
-    <tr><td>A Rush of Blood To The Head</td></tr>
-    <tr><td>Politik</td></tr>
-    <tr><td>Warning Sign</td></tr>
+  <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText">
+    <tr><td> {{track.title}}</td></tr>
   </table>
     
   </div>
@@ -76,6 +29,3 @@
     <canvas id="myChart" width="400" height="400"></canvas>
 
   </div>
-
-
->>>>>>> origin/master
