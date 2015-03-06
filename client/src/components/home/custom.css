@@ -38,9 +38,19 @@
   border-radius: 5px;
 }
 
-td:hover {
+td:hover, td:active {
   background-color: #00C195 !important;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
 }
+
+<<<<<<< HEAD
+=======
+.floatright {
+  float: right;
+}
+.floatleft {
+  float: left;
+}
+>>>>>>> origin/master
