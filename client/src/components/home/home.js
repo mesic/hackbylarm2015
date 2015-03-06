@@ -36,32 +36,50 @@ angular.module('mmApp.home', [])
 	$scope.youtubeUsername = 'ColdplayVEVO';
 	$scope.spotifyUsername = 'avicii';
 	$scope.soundcloudUsername = 'aviciiofficial';
+	$scope.loaded = true;
 
  	$scope.loadYoutubeTracks = function(){
+ 		$scope.loaded = true;
+ 		$('#graph').html('');
+  		$scope.tracks = "";	 					
 		UserService.youtubeTracks().query({'username': $scope.youtubeUsername}, function (data) {
 			$scope.tracks = data;
-			$scope.source = 'Youtube';
-			$('#graph').html('');
-		});
+			$scope.source = 'Youtube';		
+		}).$promise.then(
+			function(data){
+				$scope.loaded = false;					
+			}
+		);
 	}
 
     //Load all Spotify tracks
  	$scope.loadSpotifyTracks = function(){
+ 		$scope.loaded = true;
+ 		$('#graph').html('');
+  		$scope.tracks = "";			 		
  		UserService.spotifyTracks().query({'username': $scope.spotifyUsername}, function (data) {
     		$scope.tracks = data;
-    		$scope.source = 'Spotify';
-    		$('#graph').html('');
-    	});
+    		$scope.source = 'Spotify';		
+		}).$promise.then(
+			function(data){
+				$scope.loaded = false;					
+			}
+		);
  	}
-
 
     //Load all SoundCloud tracks
  	$scope.loadSoundcloudTracks = function(){
+ 		$scope.loaded = true;
+ 		$('#graph').html('');
+ 		$scope.tracks = "";			 		
  		UserService.soundcloudTracks().query({'username': $scope.soundcloudUsername}, function (data) {
     		$scope.tracks = data;
     		$scope.source = 'SoundCloud';
-    		$('#graph').html('');
-    	});
+		}).$promise.then(
+			function(data){
+				$scope.loaded = false;					
+			}
+		);
  	}
 
  	$scope.showTrack = function(track){
@@ -81,7 +99,7 @@ angular.module('mmApp.home', [])
 		for (var i = 0; i < numberOfDays; i++) { 
 			
 			var date = new Date();
- 			date.setDate(date.getDate() + i + 1);
+ 			date.setDate(date.getDate() - i - 1);
 			var dateLabel = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
 
 
@@ -91,6 +109,16 @@ angular.module('mmApp.home', [])
 
 		return dateArray;
 
+	}
+
+	function calculateTotalShares(socialMediaPlatform){
+			var myTotal = 0; 
+
+			for(var i=0, len=socialMediaPlatform.length; i<len; i++){
+			    myTotal += socialMediaPlatform[i]; 
+			}
+
+			return myTotal;		
 	}
 
 
@@ -160,7 +188,20 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
-	    $('#graph').html('<h4>Shares for ' + data.title + '</h4><canvas id="myChart" width="550" height="400"></canvas>');
+
+	    //Calculate total shares per platform
+	    var totalFacebookShares = calculateTotalShares(facebookData);
+	    var totalTwitterShares = calculateTotalShares(twitterData);
+
+	    $('#graph').html(
+	    	'<h4>Shares for ' + data.title + '</h4>' +
+	    	'<div>' +
+	    		'<span>Total shares per platform: </span>' +	    	
+	    		'<span style="color: #3b5998">Facebook: &#x25cf ' + totalFacebookShares + '</span>' +
+	    		'<span style="color: #00aced">    Twitter: &#x25cf ' + totalTwitterShares + '</span>' +
+	    	'</div> </br>' + 
+	    	'<canvas id="myChart" width="550" height="400"></canvas>');
+	    
 	    var canvas = document.getElementById("myChart")
 	    var ctx = canvas.getContext("2d");
 	    var myLineChart = new Chart(ctx).Line(chartdata, options);   
