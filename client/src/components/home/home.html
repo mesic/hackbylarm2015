@@ -35,12 +35,12 @@
 
  <img class="logo" src="src/assets/loader.gif" ng-show="loaded" width="200px" heigth="200px"/>
 
-  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10" ng-click="showTrack(track)" ng-init="showTrack(tracks[0])">
+  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10" ng-click="showTrack(track)">
     <tr><td> {{track.title}}</td></tr>
   </table>
     
   </div>
-  <div class="col-md-7" >
+  <div class="col-md-7" ng-show=currentTrack>
     <select class="form-control" ng-model="selectedTimeFrame" ng-options="item as item.label for item in timeFrames track by item.id" ng-change="updateChart()"></select>
     <div id="graph"></div>
   </div>

@@ -30,7 +30,7 @@ angular.module('mmApp.home', [])
 	  label: 'Last 90 days - Per day',
 	}];	
 
-	var currentTrack;
+	$scope.currentTrack;
 
 	$scope.source = '';
 	$scope.youtubeUsername = 'ColdplayVEVO';
@@ -44,7 +44,8 @@ angular.module('mmApp.home', [])
   		$scope.tracks = "";	 					
 		UserService.youtubeTracks().query({'username': $scope.youtubeUsername}, function (data) {
 			$scope.tracks = data;
-			$scope.source = 'Youtube';		
+			$scope.source = 'Youtube';
+			$scope.showTrack($scope.tracks[0]);			
 		}).$promise.then(
 			function(data){
 				$scope.loaded = false;					
@@ -59,7 +60,8 @@ angular.module('mmApp.home', [])
   		$scope.tracks = "";			 		
  		UserService.spotifyTracks().query({'username': $scope.spotifyUsername}, function (data) {
     		$scope.tracks = data;
-    		$scope.source = 'Spotify';		
+    		$scope.source = 'Spotify';
+    		$scope.showTrack($scope.tracks[0]);	
 		}).$promise.then(
 			function(data){
 				$scope.loaded = false;					
@@ -74,7 +76,8 @@ angular.module('mmApp.home', [])
  		$scope.tracks = "";			 		
  		UserService.soundcloudTracks().query({'username': $scope.soundcloudUsername}, function (data) {
     		$scope.tracks = data;
-    		$scope.source = 'SoundCloud';
+    		$scope.source = 'SoundCloud';	
+    		$scope.showTrack($scope.tracks[0]);	
 		}).$promise.then(
 			function(data){
 				$scope.loaded = false;					
@@ -83,15 +86,28 @@ angular.module('mmApp.home', [])
  	}
 
  	$scope.showTrack = function(track){
- 		chartInit(track);
- 		currentTrack = track;
+ 		switch(track.type) {
+ 			case 'soundcloud':
+ 				UserService.soundcloudTrack().get({id: track.id}, function(data){
+ 					$scope.currentTrack = data;
+ 					chartInit($scope.currentTrack);
+ 				});
+ 				break;
+ 			case 'youtube':
+ 				UserService.youtubeTrack().get({id: track.id}, function(data){
+ 					$scope.currentTrack = data;
+ 					chartInit($scope.currentTrack);
+ 				});
+ 				break;
+ 			case 'spotify':
+ 				UserService.spotifyTrack().get({id: track.id}, function(data){
+ 					$scope.currentTrack = data;
+ 					chartInit($scope.currentTrack);
+ 				});
+ 				break;
+ 		}
  	} 	
  	
- 	$scope.updateChart = function() {
- 		chartInit(currentTrack);
- 	}
-
-
 	function getDatesForChart(numberOfDays){
 
 		var dateArray = [];
@@ -237,15 +253,17 @@ angular.module('mmApp.home', [])
 	    };
 
 	    //Calculate total shares per platform
-	    var totalFacebookShares = calculateTotalShares(facebookData);
-	    var totalTwitterShares = calculateTotalShares(twitterData);
+	    var totalFacebookShares = data.shares.fb.total;
+	    var totalTwitterShares = data.shares.twitter.total;
+	    var totalGoogleBlogShares = data.shares.googleBlogs.total;
 
 	    $('#graph').html(
 	    	'<h4>' + data.title + '</h4>' +
 	    	'<div>' +
 	    		'<span>Total shares per platform: </span>' +	    	
 	    		'<span style="color: #3b5998">Facebook: &#x25cf ' + totalFacebookShares + '</span>' +
-	    		'<span style="color: #00aced">    Twitter: &#x25cf ' + totalTwitterShares + '</span>' +
+	    		'&nbsp;<span style="color: #00aced">    Twitter: &#x25cf ' + totalTwitterShares + '</span>' +
+	    		'&nbsp;<span style="color: red">    Google blogs: &#x25cf ' + totalGoogleBlogShares + '</span>' +
 	    	'</div> </br>' + 
 	    	'<canvas id="myChart" width="550" height="400"></canvas>');
 	    

@@ -62,6 +62,7 @@ apiRouter.get('/spotify/tracks', function(req, res){
 				id: trackId,
 				shareLink: 'https://open.spotify.com/track/' + trackId,
 				title: spotifyTracks.tracks[i].name,
+				type: 'spotify'
 			});			
 		}
 		res.json(ret);
@@ -78,6 +79,7 @@ apiRouter.get('/spotify/tracks/:id', function(req, res){
 						id: spotifyTrack.id,
 						shareLink: spotifyTrack.external_urls.spotify,
 						title: spotifyTrack.name,
+						type: 'spotify',
 						shares: {
 							fb: {
 								hours: generateSharesPerHourForLastTwoWeeks(),
@@ -112,7 +114,8 @@ apiRouter.get('/soundcloud/tracks', function(req, res){
 					ret.push({
 						id: soundcloudTracks[i].id,
 						shareLink: soundcloudTracks[i].permalink_url,
-						title: soundcloudTracks[i].title
+						title: soundcloudTracks[i].title,
+						type: 'soundcloud'
 					});			
 				}
 				res.json(ret);
@@ -133,6 +136,7 @@ apiRouter.get('/soundcloud/tracks/:id', function(req, res){
 						id: soundcloudTrack.id,
 						shareLink: soundcloudTrack.permalink_url,
 						title: soundcloudTrack.title,
+						type: 'soundcloud',
 						shares: {
 							fb: {
 								hours: generateSharesPerHourForLastTwoWeeks(),
@@ -181,7 +185,8 @@ apiRouter.get('/youtube/tracks', function(req, res){
 						ret.push({
 							id: object1.items[i].contentDetails.videoId,
 							shareLink: 'https://www.youtube.com/watch?v=' + object1.items[i].contentDetails.videoId,
-							title: object1.items[i].snippet.title
+							title: object1.items[i].snippet.title,
+							type: 'youtube'
 						});
 					}
 					res.json(ret);
@@ -210,6 +215,7 @@ apiRouter.get('/youtube/tracks/:id', function(req, res){
 						id: movie.id,
 						shareLink: movie.shareLink,
 						title: movie.snippet.title,
+						type: 'youtube',
 						shares: {
 							fb: {
 								hours: generateSharesPerHourForLastTwoWeeks(),
