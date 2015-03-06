@@ -4,6 +4,7 @@ angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
+<<<<<<< HEAD
 
     //Load all YouTube tracks (default)
  	$scope.loadYoutubeTracks = function(){
@@ -27,12 +28,51 @@ angular.module('mmApp.home', [])
  	} 	
 
     chartInit();
+=======
+  	
+	UserService.youtubeTracks().query(function (data) {
+		$scope.tracks = data;
+		chartInit(data);
 
-	function chartInit(){
+	});
+
+
+>>>>>>> origin/master
+
+
+
+	var timeFrame = [7,14,30,90];    
+
+
+
+	function getDatesForChart(numberOfDays){
+
+		var dateArray = [];
+
+		for (var i = 0; i < numberOfDays; i++) { 
+			
+			var date = new Date();
+ 			date.setDate(date.getDate() + i + 1);
+			var dateLabel = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
+
+
+			dateArray[i] = dateLabel;
+
+		}
+
+		return dateArray;
+
+
+	}
+
+
+	function chartInit(data){
 	    var options = {bezierCurve: false};
 
+	    var labels = getDatesForChart(7);
+
 	    var data = {
-	        labels: ["January", "February", "March", "April", "May", "June", "July"],
+	        labels: labels,
 	        datasets: [
 	            {
 	                label: "My First dataset",
@@ -42,7 +82,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(220,220,220,1)",
-	                data: [65, 59, 80, 81, 56, 55]
+	                data: []//data[0]["facebook"]
 	            },
 	            {
 	                label: "My Second dataset",
@@ -52,7 +92,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(151,187,205,1)",
-	                data: [28, 48, 40, 19, 86, 27, 90]
+	                data: []//data[0]["twitter"]
 	            }
 	        ]
 	    };
