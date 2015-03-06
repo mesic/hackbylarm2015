@@ -12,12 +12,7 @@ angular.module('mmApp.home', [])
 	});
 
 
-
-
-
 	var timeFrame = [7,14,30,90];    
-
-
 
 	function getDatesForChart(numberOfDays){
 
@@ -36,8 +31,15 @@ angular.module('mmApp.home', [])
 
 		return dateArray;
 
+	}
+
+	function segmentData(timeFrame){
+		
+
+
 
 	}
+
 
 
 	function chartInit(data){
