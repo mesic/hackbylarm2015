@@ -9,25 +9,25 @@ angular.module('mmApp.home', [])
 	$scope.selectedTimeFrame = {
 	  days: 7,
 	  id: 1,
-	  label: 'Last 7 days',
+	  label: 'Last 7 days - Per hour',
 	};
 
 	$scope.timeFrames = [{
 	  days: 7,
 	  id: 1,
-	  label: 'Last 7 days',
+	  label: 'Last 7 days - Per hour',
 	}, {
 	  days: 14,
 	  id:2,
-	  label: 'Last 14 days',
+	  label: 'Last 14 days - Per hour',
 	}, {
 	  days: 30,
 	  id:3,
-	  label: 'Last 30 days',
+	  label: 'Last 30 days - Per day',
 	}, {
 	  days: 90,
 	  id:4,
-	  label: 'Last 90 days',
+	  label: 'Last 90 days - Per day',
 	}];	
 
 	var currentTrack;
