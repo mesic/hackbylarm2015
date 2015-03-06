@@ -31,3 +31,15 @@
   width: 200px;
   margin: 20px 0 0 35px;
 }
+
+.tracklist {
+  background-color: #f8f8f8;
+  padding: 10px; 
+  border-radius: 5px;
+}
+
+td:hover {
+  background-color: #00C195 !important;
+  color: #fff;
+  border-radius: 5px;
+}
