@@ -81,7 +81,7 @@ angular.module('mmApp.home', [])
 		for (var i = 0; i < numberOfDays; i++) { 
 			
 			var date = new Date();
- 			date.setDate(date.getDate() + i + 1);
+ 			date.setDate(date.getDate() - numberOfDays + i);
 			var dateLabel = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
 
 
