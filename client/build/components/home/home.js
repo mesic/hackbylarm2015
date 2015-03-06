@@ -4,19 +4,27 @@ angular.module('mmApp.home', [])
 
 .controller('HomeController', 
 	['$scope', 'userService', function($scope, UserService) {
-  	
 
-  	//Load shares on a specific track
- 	UserService.trackShares().query(function (data) {
-    	$scope.trackShares = data;
-    });
-
-    //Load all tracks
+    //Load all YouTube tracks (default)
  	$scope.loadYoutubeTracks = function(){
- 		UserService.youtubeTracks().query(function (data) {
+		UserService.youtubeTracks().query(function (data) {
+			$scope.tracks = data;
+		});
+	}
+
+    //Load all Spotify tracks
+ 	$scope.loadSpotifyTracks = function(){
+ 		UserService.spotifyTracks().query(function (data) {
     		$scope.tracks = data;
     	});
  	}
+
+    //Load all SoundCloud tracks
+ 	$scope.loadSoundcloudTracks = function(){
+ 		UserService.soundcloudTracks().query(function (data) {
+    		$scope.tracks = data;
+    	});
+ 	} 	
 
     chartInit();
 

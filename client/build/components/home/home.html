@@ -1,26 +1,25 @@
 
 <img src="img/logo.png"/>
 
-<div class="row margin">
+<div class="row margin" ng-init="loadYoutubeTracks()">
   <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation" class="active"><a href="#">All Channels</a></li>
+      <li role="presentation"><a href="#">All Channels</a></li>
       <li role="presentation" ng-click="loadYoutubeTracks()">
-        <a href="#">YouTube</a>
+        <a href="#/home">YouTube</a>
       </li>
-      <li role="presentation" ng-click="loadYoutubeTracks()">
-        <a href="#">SoundCloud</a>
-      </li>
-
-      <li role="presentation" ng-click="loadYoutubeTracks()">
-        <a href="#">Spotify</a>
+      <li role="presentation" ng-click="loadSoundcloudTracks()">
+        <a href="#/home">SoundCloud</a>
       </li>
 
+      <li role="presentation" ng-click="loadSpotifyTracks()">
+        <a href="#/home">Spotify</a>
+      </li>
   </ul>
   </div>
   <div class="col-md-2">
   <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
-  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText">
+  <table class="table table-hover" ng-repeat="track in tracks | filter:searchText | limitTo:10">
     <tr><td> {{track.title}}</td></tr>
   </table>
     
