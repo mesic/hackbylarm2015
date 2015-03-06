@@ -1,28 +1,28 @@
 [
     {
       "facebook": {
-        "total": 456,
-        "sinceYesterday" : 20
+        "total": 899,
+        "sinceYesterday" : 21
       },
       "twitter": {
         "total": 456,
-        "sinceYesterday" : 20
+        "sinceYesterday" : 4
       },
       "instagram": {
-        "total": 456,
-        "sinceYesterday" : 20
+        "total": 378,
+        "sinceYesterday" : 16
       },
       "spotify": {
-        "total": 456,
-        "sinceYesterday" : 20
+        "total": 780,
+        "sinceYesterday" : 25
       }, 
       "soundcloud": {
-        "total": 456,
-        "sinceYesterday" : 20
+        "total": 1781,
+        "sinceYesterday" : 93
       },
       "youtube": {
-        "total": 456,
-        "sinceYesterday" : 20
+        "total": 3124,
+        "sinceYesterday" : 62
       }
     }                 
 ]
