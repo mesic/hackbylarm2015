@@ -99,7 +99,11 @@ angular.module('mmApp.home', [])
 		for (var i = 0; i < numberOfDays; i++) { 
 			
 			var date = new Date();
+<<<<<<< HEAD
  			date.setDate(date.getDate() - i - 1);
+=======
+ 			date.setDate(date.getDate() - numberOfDays + i);
+>>>>>>> origin/master
 			var dateLabel = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
 
 
@@ -123,11 +127,11 @@ angular.module('mmApp.home', [])
 
 
 	function chartInit(data){
-	    var options = {bezierCurve: false};
+	    var options = {bezierCurve: false, pointDot : false};
 
 	    var labels = getDatesForChart($scope.selectedTimeFrame.days);
 
-	    var facebookData = [];
+		var facebookData = [];
 	    var twitterData = [];
 
 
@@ -138,6 +142,22 @@ angular.module('mmApp.home', [])
 				facebookData = data["shares"]["fb"]["hours"].slice(168, 336);
 				twitterData = data["shares"]["twitter"]["hours"].slice(168, 336);
 
+			    var newLabels = [];
+
+			    for (var i = 0; i <= 144; i++) {
+			    	
+			    	if(i%24 == 0){
+						newLabels[i] = labels[i/24];
+			    	}
+			    	else{
+			    		newLabels[i] = "";
+			    		
+			    	}
+
+			    };
+
+			    labels = newLabels;
+
 
 		        break;
 		    case 14:
@@ -146,6 +166,23 @@ angular.module('mmApp.home', [])
 				facebookData = data["shares"]["fb"]["hours"];
 				twitterData = data["shares"]["twitter"]["hours"];
 
+			    var newLabels = [];
+
+			    for (var i = 0; i <= 312; i++) {
+			    	
+			    	if(i%24 == 0){
+						newLabels[i] = labels[i/24];
+			    	}
+			    	else{
+			    		newLabels[i] = "";
+			    		
+			    	}
+
+			    };
+
+			    labels = newLabels;
+
+
 		        break;
 		    case 30:
 				// 30 days, show days		        
@@ -153,22 +190,35 @@ angular.module('mmApp.home', [])
 				facebookData = data["shares"]["fb"]["days"].slice(60, 90);
 				twitterData = data["shares"]["twitter"]["days"].slice(60, 90);
 
+			    for (var i = 0; i < labels.length; i++) {
+			    	
+			    	if(i%7 != 0){
+						labels[i] = "";
+			    	}
+			    };
+
 		        break;
 		    case 90:
 				// 90 days, show days
 				facebookData = data["shares"]["fb"]["days"].slice(0,90);
 				twitterData = data["shares"]["twitter"]["days"].slice(0,90);
 
+			    for (var i = 0; i < labels.length; i++) {
+			    	
+			    	if(i%7 != 0){
+						labels[i] = "";
+			    	}
+			    };
+
 				break;
 		}
-
 
 	    var chartdata = {
 	        labels: labels,
 	        datasets: [
 	            {
 	                label: "My First dataset",
-	                fillColor: "rgba(59,89,152,1.0)",
+	                fillColor: "rgba(59,89,152,0.1)",
 	                strokeColor: "rgba(59,89,152,1.0)",
 	                pointColor: "rgba(59,89,152,1.0)",
 	                pointStrokeColor: "#fff",
@@ -178,7 +228,7 @@ angular.module('mmApp.home', [])
 	            },
 	            {
 	                label: "My Second dataset",
-	                fillColor: "rgba(0,172,237,1.0)",
+	                fillColor: "rgba(0,172,237,0.1)",
 	                strokeColor: "rgba(0,172,237,1.0)",
 	                pointColor: "rgba(0,172,237,1.0)",
 	                pointStrokeColor: "#fff",
@@ -188,6 +238,7 @@ angular.module('mmApp.home', [])
 	            }
 	        ]
 	    };
+<<<<<<< HEAD
 
 	    //Calculate total shares per platform
 	    var totalFacebookShares = calculateTotalShares(facebookData);
@@ -202,6 +253,9 @@ angular.module('mmApp.home', [])
 	    	'</div> </br>' + 
 	    	'<canvas id="myChart" width="550" height="400"></canvas>');
 	    
+=======
+	    $('#graph').html('<h4 class="floatleft">'+ data.title + '</h4><canvas id="myChart" width="700" height="400"></canvas>');
+>>>>>>> origin/master
 	    var canvas = document.getElementById("myChart")
 	    var ctx = canvas.getContext("2d");
 	    var myLineChart = new Chart(ctx).Line(chartdata, options);   

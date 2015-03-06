@@ -41,7 +41,8 @@
     
   </div>
   <div class="col-md-7" >
-    <select ng-model="selectedTimeFrame" ng-options="item as item.label for item in timeFrames track by item.id" ng-change="updateChart()"></select>
+    <select class="form-control" ng-model="selectedTimeFrame" ng-options="item as item.label for item in timeFrames track by item.id" ng-change="updateChart()"></select>
+    <h5 class="floatright">FB: 112 &nbsp;&nbsp; Twitter: 187</h5>
     <div id="graph"></div>
   </div>
 
