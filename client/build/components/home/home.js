@@ -1,5 +1,13 @@
 'use strict';
 
+
+var timeFrame = [7,14,30,90];
+
+var selectedTimeFrame = 1;
+
+var selectedItem = 0;
+
+
 angular.module('mmApp.home', [])
 
 .controller('HomeController', 
@@ -19,6 +27,7 @@ angular.module('mmApp.home', [])
     	});
  	}
 
+
     //Load all SoundCloud tracks
  	$scope.loadSoundcloudTracks = function(){
  		UserService.soundcloudTracks().query(function (data) {
@@ -27,9 +36,6 @@ angular.module('mmApp.home', [])
     	});
  	} 	
 
-
-
-	var timeFrame = [7,14,30,90];    
 
 	function getDatesForChart(numberOfDays){
 
@@ -50,19 +56,47 @@ angular.module('mmApp.home', [])
 
 	}
 
-	function segmentData(timeFrame){
-		
-
-
-
-	}
-
-
 
 	function chartInit(data){
 	    var options = {bezierCurve: false};
 
-	    var labels = getDatesForChart(7);
+	    var labels = getDatesForChart(timeFrame[selectedTimeFrame]);
+
+	    var facebookData = [];
+	    var twitterData = [];
+
+
+	    switch (selectedTimeFrame) {
+		    case 0:
+		        
+		    	// 7 days, show hours (7*24h = 168h)
+				facebookData = data[selectedItem]["shares"]["fb"]["hours"].slice(0,168);
+				twitterData = data[selectedItem]["shares"]["twitter"]["hours"].slice(0,168);
+
+
+		        break;
+		    case 1:
+		        
+				// 14 days, show hours
+				facebookData = data[selectedItem]["shares"]["fb"]["hours"];
+				twitterData = data[selectedItem]["shares"]["twitter"]["hours"];
+
+		        break;
+		    case 2:
+				// 30 days, show days		        
+
+				facebookData = data[selectedItem]["shares"]["fb"]["days"].slice(0,30);
+				twitterData = data[selectedItem]["shares"]["twitter"]["days"].slice(0,30);
+
+		        break;
+		    case 3:
+				// 90 days, show days
+				facebookData = data[selectedItem]["shares"]["fb"]["days"].slice(0,90);
+				twitterData = data[selectedItem]["shares"]["twitter"]["days"].slice(0,90);
+
+				break;
+		}
+
 
 	    var data = {
 	        labels: labels,
@@ -75,7 +109,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(220,220,220,1)",
-	                data: []//data[0]["facebook"]
+	                data: facebookData
 	            },
 	            {
 	                label: "My Second dataset",
@@ -85,7 +119,7 @@ angular.module('mmApp.home', [])
 	                pointStrokeColor: "#fff",
 	                pointHighlightFill: "#fff",
 	                pointHighlightStroke: "rgba(151,187,205,1)",
-	                data: []//data[0]["twitter"]
+	                data: twitterData
 	            }
 	        ]
 	    };
